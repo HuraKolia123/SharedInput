@@ -1,13 +1,80 @@
-.Input {
+.inputContent {
+  display: flex;
+  gap: 4px;
   width: 100%;
-  padding: 5px;
-  height: 40px;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: 16px;
+  flex-direction: column;
+}
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 64px;
+  width: 100%;
+  border: 1px solid #d1d1d6;
+  border-radius: 4px;
+}
+
+.inputWrapperExtraSmall {
+  height: 24px;
+  padding: 0px 12px 0px 12px;
+}
+
+.inputWrapperMedium {
+  height: 36px;
+  padding: 0px 12px 0px 12px;
+}
+
+.inputWrapperLarge {
+  height: 40px;
+  padding: 0px 16px 0px 16px;
+}
+
+.inputWrapperExtraLarge {
+  height: 48px;
+  padding: 0px 16px 0px 16px;
+}
+
+.input {
+  color: #1a1a1e;
+  font-weight: 400;
+  line-height: 20px;
+
+  &::placeholder {
+    color: #70707b;
   }
+}
+
+.inputTextSmall {
+  font-size: 12px;
+}
+
+.inputTextLarge {
+  font-size: 14px;
+}
+
+.inputFocused {
+  border-color: #84cafe;
+  box-shadow: 0px 0px 0px 4px #2e90fa3d;
+}
+
+.label {
+  font-weight: 500;
+  line-height: 20px;
+  color: #1a1a1e;
+}
+
+.labelSmall {
+  font-size: 12px;
+}
+
+.labelLarge {
+  font-size: 14px;
+}
+
+.helperText {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #51525c;
 }
