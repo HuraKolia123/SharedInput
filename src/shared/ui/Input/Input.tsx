@@ -4,7 +4,6 @@ import {
   CSSProperties,
   FC,
   HTMLInputTypeAttribute,
-  ReactNode,
   useState,
 } from "react";
 // libs
@@ -18,7 +17,11 @@ interface InputProps {
   value: string;
   type: HTMLInputTypeAttribute;
 
-  inputSize: "extrasmall" | "medium" | "large" | "extralarge";
+  isDisabled?: boolean;
+  isError?: boolean;
+  isRequired?: boolean;
+  isBorderDisabled?: boolean;
+  inputSize?: "extrasmall" | "medium" | "large" | "extralarge";
   maxWidth?: CSSProperties["maxWidth"];
   label: string;
   helperText: string;
@@ -31,6 +34,10 @@ export const Input: FC<InputProps> = ({
   value,
   helperText,
   label,
+  isDisabled = false,
+  isError = false,
+  isRequired = false,
+  isBorderDisabled = false,
   inputSize = "medium",
   maxWidth = "323px",
 }) => {
@@ -51,9 +58,11 @@ export const Input: FC<InputProps> = ({
 
             [styles.labelLarge]:
               inputSize === "large" || inputSize === "extralarge",
+            [styles.labelDisabled]: isDisabled,
           })}
         >
           {label}
+          {isRequired && <span className={styles.required}>*</span>}
         </label>
       )}
       <div
@@ -62,18 +71,24 @@ export const Input: FC<InputProps> = ({
           [styles.inputWrapperMedium]: inputSize === "medium",
           [styles.inputWrapperLarge]: inputSize === "large",
           [styles.inputWrapperExtraLarge]: inputSize === "extralarge",
-          [styles.inputFocused]: isFocused,
+          [styles.inputWrapperFocused]: isFocused && !isError,
+          [styles.inputWrapperborderDisabled]: isBorderDisabled,
+          [styles.inputWrapperError]: isError && !isDisabled,
+          [styles.inputWrapperErrorFocused]: isError && isFocused,
+          [styles.inputWrapperDisabled]: isDisabled,
         })}
       >
         <input
           onFocus={onFocusedToggle}
           onBlur={onFocusedToggle}
+          disabled={isDisabled}
           id="input"
           className={clsx(styles.input, {
             [styles.inputTextSmall]:
               inputSize === "extrasmall" || inputSize === "medium",
             [styles.inputTextLarge]:
               inputSize === "large" || inputSize === "extralarge",
+            [styles.inputDisabled]: isDisabled,
           })}
           onChange={onChange}
           placeholder={placeholder}
@@ -82,7 +97,13 @@ export const Input: FC<InputProps> = ({
         />
       </div>
       {helperText && (
-        <div className={clsx(styles.helperText, {})}>{helperText}</div>
+        <div
+          className={clsx(styles.helperText, {
+            [styles.helperTextDisabled]: isDisabled,
+          })}
+        >
+          {helperText}
+        </div>
       )}
     </div>
   );

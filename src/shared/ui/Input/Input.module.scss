@@ -39,6 +39,7 @@
   color: #1a1a1e;
   font-weight: 400;
   line-height: 20px;
+  background-color: transparent;
 
   &::placeholder {
     color: #70707b;
@@ -53,7 +54,7 @@
   font-size: 14px;
 }
 
-.inputFocused {
+.inputWrapperFocused {
   border-color: #84cafe;
   box-shadow: 0px 0px 0px 4px #2e90fa3d;
 }
@@ -62,6 +63,9 @@
   font-weight: 500;
   line-height: 20px;
   color: #1a1a1e;
+
+  display: flex;
+  gap: 4px;
 }
 
 .labelSmall {
@@ -77,4 +81,44 @@
   font-weight: 400;
   line-height: 20px;
   color: #51525c;
+}
+
+.inputWrapperborderDisabled {
+  border-width: 0px;
+  &:hover {
+    border-width: 1px;
+  }
+}
+
+.required {
+  color: #d92d1f;
+}
+
+.inputWrapperError {
+  border-color: #fca29a;
+}
+
+.inputWrapperErrorFocused {
+  box-shadow: 0 0 0 4px rgba(255, 77, 79, 0.4);
+}
+
+.labelDisabled {
+  color: #70707a;
+}
+
+.inputDisabled {
+  color: #d2d1d6;
+  cursor: not-allowed;
+
+  &::placeholder {
+    color: #d2d1d6;
+  }
+}
+
+.inputWrapperDisabled {
+  cursor: not-allowed;
+}
+
+.helperTextDisabled {
+  color: #d2d1d6;
 }
